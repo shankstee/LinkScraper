@@ -26,22 +26,26 @@ app.use(express.static("public"));
 const Nightmare = require('nightmare')
 const nightmare = Nightmare({ show: true })
 
+var links = [];
+
 axios.get("https://www.reddit.com/r/nbastreams").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every span and do the following:
     $(".y8HYJ-y_lTUHkQIc1mdCq").each(function(i, element) {
-      // Save an empty result object
 
-      // Empty object to store each game thread from the nba Streams page 
-      var result = {};
-      if ($(this).text().includes("Game Thread")) {
-        result.streamLink = "https://www.reddit.com" + $(this).children("a").attr("href")
-      }
-      console.log(result);
-      $("#link").append(`<td>${result[0]}</td>`)
+    if ($(this).text().includes("Game Thread")) {
+      links.push({
+        title: $(this).text(),
+        link: "https://www.reddit.com" + $(this).children("a").attr("href")
+      });
+    }
+     
+    //  console.log("https://www.reddit.com" + $(this).children("a").attr("href"));
     });
+
+    
   });
 
   // Now that I have the links to each game thread page, redirect to the link and grab all p tags with <a href>
@@ -57,3 +61,5 @@ axios.get("https://www.reddit.com/r/nbastreams").then(function(response) {
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
   });
+
+module.exports = links;
