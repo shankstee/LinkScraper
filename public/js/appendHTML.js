@@ -1,13 +1,5 @@
-var exphbs  = require('express-handlebars');
-
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-      defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+var axios = require("axios");
+var cheerio = require("cheerio");
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -15,16 +7,7 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-const Nightmare = require('nightmare')
-const nightmare = Nightmare({ show: true })
-
 var links = [];
-
-
-
-  // Now that I have the links to each game thread page, redirect to the link and grab all p tags with <a href>
-  // and store those links to the html page.
-  // Also grab a title for each game that the links are attached to. 
 
   app.get("/", function(req, res) {
     axios.get("https://www.reddit.com/r/nbastreams").then(function(response) {
