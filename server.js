@@ -9,7 +9,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-// var db = require("./models");
+var db = require("./models");
 
 var PORT = 3000;
 
@@ -42,14 +42,31 @@ app.get("/", function(req, res) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
     // Grab each span tag on the page
+    
     $("span").each(function (i, element) {
+      var comicTableInfo = {};
       // for each span on the page, if the text within that span tag is === to Comic Spiolers, push that to the comic table, else if the text is ==
       // to Show spoiler, push to show table.
-        if ($(this).text().includes("Show Spoiler")) {
-          console.log($(this).text());
-          console.log("https://www.reddit.com" + $(this).next().attr("href"));
-        }
+        if ($(this).text().includes("Comic Spoiler")) {  
+          comicTableInfo.type = $(this).text()
+          comicTableInfo.title = $(this).next().text()
+          comicTableInfo.link = "https://www.reddit.com" + $(this).next().attr("href")
+          console.log(comicTableInfo);
+
+        db.Comic.create(comicTableInfo)
+          .then(function(dbComicThread) {
+          // View the added result in the console
+          console.log(dbComicThread);
+        })
+        .catch(function(err) {
+          // If an error occurred, log it
+          console.log(err);
+        });
+        };
+
+    // End of for each "<span> tag"
     });
+    
   });
 });
     // Start the server
