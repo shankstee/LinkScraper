@@ -76,7 +76,7 @@ app.get("/scrapeComics", function(req, res) {
         db.Comic.remove({}, ()=> {
           console.log("Removed Data");
         })
-        db.Show.create(comicTableInfo)
+        db.Comic.create(comicTableInfo)
           .then(function(dbComicThread) {
           // View the added result in the console
           console.log(dbComicThread);
@@ -89,10 +89,10 @@ app.get("/scrapeComics", function(req, res) {
           showTableInfo.thread = $(this).text()
           showTableInfo.title = $(this).next().text()
           showTableInfo.link = "https://www.reddit.com" + $(this).next().attr("href")
-        db.Comic.remove({}, ()=> {
+        db.Show.remove({}, ()=> {
           console.log("Removed Data");
         })
-        db.Comic.create(showTableInfo)
+        db.Show.create(showTableInfo)
           .then(function(dbShowThread) {
           // View the added result in the console
           console.log(dbShowThread);
