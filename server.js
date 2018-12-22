@@ -40,12 +40,23 @@ app.use(express.static("public"));
 
 
 app.get("/", function(req, res) {
+
+  var hbsObj = {};
   db.Comic.find({})
     .then(function(dbComics) {
       // If we were able to successfully find Comic Threads, send them back to the client
-      var hbsObj = {
-        post: dbComics
-      }
+      hbsObj.post = dbComics;
+      console.log(hbsObj)
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+
+    db.Show.find({})
+    .then(function(dbShows) {
+      // If we were able to successfully find Comic Threads, send them back to the client
+      hbsObj.showPost = dbShows;
       console.log(hbsObj)
       res.render("table", hbsObj);
     })
