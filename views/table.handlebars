@@ -10,12 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr id="link">
-      {{#each post}}
-        <li>{{this.thread}}</li>
-      {{/each}}
-      
+    {{#each post}}
+    <tr>
+      <td>{{this.thread}}</td>
+      <td>{{this.title}}</td>
+      <td><a href="{{this.link}}">Follow Link</a></td>
     </tr>
+    {{/each}}
     {{!-- <tr>
       <th scope="row">2</th>
       <td>Jacob</td>

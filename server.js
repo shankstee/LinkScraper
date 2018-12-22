@@ -66,6 +66,7 @@ app.get("/scrapeComics", function(req, res) {
     
     $("span").each(function (i, element) {
       var comicTableInfo = {};
+      var showTableInfo = {};
       // for each span on the page, if the text within that span tag is === to Comic Spiolers, push that to the comic table, else if the text is ==
       // to Show spoiler, push to show table.
         if ($(this).text().includes("Comic Spoiler")) {  
@@ -75,7 +76,7 @@ app.get("/scrapeComics", function(req, res) {
         db.Comic.remove({}, ()=> {
           console.log("Removed Data");
         })
-        db.Comic.create(comicTableInfo)
+        db.Show.create(comicTableInfo)
           .then(function(dbComicThread) {
           // View the added result in the console
           console.log(dbComicThread);
@@ -84,11 +85,27 @@ app.get("/scrapeComics", function(req, res) {
           // If an error occurred, log it
           console.log(err);
         });
-        };
+        } else if ($(this).text() === "Show Spoiler") {
+          showTableInfo.thread = $(this).text()
+          showTableInfo.title = $(this).next().text()
+          showTableInfo.link = "https://www.reddit.com" + $(this).next().attr("href")
+        db.Comic.remove({}, ()=> {
+          console.log("Removed Data");
+        })
+        db.Comic.create(showTableInfo)
+          .then(function(dbShowThread) {
+          // View the added result in the console
+          console.log(dbShowThread);
+        })
+        .catch(function(err) {
+          // If an error occurred, log it
+          console.log(err);
+        });
+        }
 
     // End of for each "<span> tag"
     });
-    res.send("Information organized")
+    res.send("Information  scraped and organized")
   });
 });
 
