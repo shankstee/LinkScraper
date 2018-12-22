@@ -1,5 +1,6 @@
-var links = require("../../scrape")
-
-
-$("#link").append(`<td>${links[0].title}</td>`)
-    console.log(links);
+// $.ajax({
+//     type: 'GET',
+//     url: '/Comics'
+// }).then( data => {
+//     console.log(data);
+// });
