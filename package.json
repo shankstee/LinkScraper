@@ -2,9 +2,10 @@
   "name": "grabprice",
   "version": "1.0.0",
   "description": "Grab cannabis prices from all nearby locations",
-  "main": "scrape.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Trae Shanks",
   "license": "ISC",
