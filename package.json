@@ -1,7 +1,7 @@
 {
   "name": "grabprice",
   "version": "1.0.0",
-  "description": "Grab cannabis prices from all nearby locations",
+  "description": "Grab Infomation from TWD reddit page and organize Comic Threads from Show Threads to avoid spoilers",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
