@@ -14,7 +14,7 @@ var db = require("./models");
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/comics", { useNewUrlParser: true });
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
