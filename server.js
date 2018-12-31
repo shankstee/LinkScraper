@@ -12,7 +12,8 @@ var cheerio = require("cheerio");
 var db = require("./models");
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/comics", { useNewUrlParser: true });
+var CONNECTION_URI = process.env.MONGODB_URI || "mongodb://localhost/comics";
+mongoose.connect(CONNECTION_URI, { useNewUrlParser: true });
 
 var PORT = process.env.PORT || 3000;
 
