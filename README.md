@@ -14,10 +14,10 @@ There may be a small delay when you first try to access the application due to t
 The user will start of on the homepage showing two tables one above the other. The top table is all Comic book spoiler threads last saved to the database and below is a table holding all Show spoiler threads last saved to the database. At the top of the page there is a "Grab Fresh Threads" button that will re-scrape the /r/thewalkingdead web page and save that data to the database and redirect the user to a conformation page stating that the new data was scrapped successfully. Under conformation text is a button that will redirect the user back to the homepage with all up to date information shown on either table.
 
 # Technologies Used
-Bootstrap and Handlebars.js
-MongoDB and Mongoose
-Node.js and Express.js
-Axios and Cheerio
-Heroku
+- Bootstrap and Handlebars.js
+- MongoDB and Mongoose
+- Node.js and Express.js
+- Axios and Cheerio
+- Heroku
 
 
