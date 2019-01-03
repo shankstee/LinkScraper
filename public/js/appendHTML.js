@@ -1,6 +1,7 @@
-// $.ajax({
-//     type: 'GET',
-//     url: '/Comics'
-// }).then( data => {
-//     console.log(data);
-// });
+function scrapeData() {
+    $.ajax({
+        url: '/scrapeComics'
+    }).then( () => {
+        location.reload();
+    });
+  };

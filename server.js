@@ -117,7 +117,7 @@ app.get("/scrapeComics", function(req, res) {
 
     // End of for each "<span> tag"
     });
-    res.send("Information  scraped and organized")
+    res.send("Information  scraped and organized<br><a href='/'><button>Back to main page</button></a>")
   });
 });
 
@@ -134,6 +134,8 @@ app.get("/Comics", function(req, res) {
       res.json(err);
     });
 });
+
+
     // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
